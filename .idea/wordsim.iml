@@ -5,5 +5,36 @@
     <content url="file://$MODULE_DIR$" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/Downloads/ws4j-1.0.1.jar!/assemblies" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/Downloads/commons-lang3-3.4-bin/commons-lang3-3.4/commons-lang3-3.4.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$USER_HOME$/Downloads/edu.mit.jwi_2.4.0_all" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$USER_HOME$/Downloads/edu.mit.jwi_2.4.0_all" />
+        </SOURCES>
+        <jarDirectory url="file://$USER_HOME$/Downloads/edu.mit.jwi_2.4.0_all" recursive="false" />
+        <jarDirectory url="file://$USER_HOME$/Downloads/edu.mit.jwi_2.4.0_all" recursive="false" type="SOURCES" />
+      </library>
+    </orderEntry>
   </component>
 </module>
