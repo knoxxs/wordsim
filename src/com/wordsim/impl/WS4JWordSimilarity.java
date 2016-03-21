@@ -1,5 +1,6 @@
-package impl;
+package com.wordsim.impl;
 
+import com.wordsim.SimilarityMeasure;
 import edu.cmu.lti.lexical_db.ILexicalDatabase;
 import edu.cmu.lti.lexical_db.NictWordNet;
 import edu.cmu.lti.ws4j.RelatednessCalculator;
@@ -15,42 +16,42 @@ public class WS4JWordSimilarity extends AbstractWordSimilarity {
     }
 
     @Override
-    public Double getWordSimilarity(String word1, String word2, SimilarityMeasureMetrics measure) {
+    public Double getWordSimilarity(String word1, String word2, SimilarityMeasure measure) {
         return getMeasure(measure).calcRelatednessOfWords(word1, word2);
     }
 
-    private RelatednessCalculator getMeasure(SimilarityMeasureMetrics measure) {
+    private RelatednessCalculator getMeasure(SimilarityMeasure measure) {
         RelatednessCalculator rc = null;
         switch (measure) {
-            case hso:
+            case HirstStOnge:
                 rc = new HirstStOnge(db);
                 break;
 
-            case lch:
+            case Leacock_Chodorow:
                 rc = new LeacockChodorow(db);
                 break;
 
-            case lesk:
+            case Lesk:
                 rc = new Lesk(db);
                 break;
 
-            case res:
+            case Resnik:
                 rc = new Resnik(db);
                 break;
 
-            case wup:
+            case Wu_Palmer:
                 rc = new WuPalmer(db);
                 break;
 
-            case jcn:
+            case Jiang_Conrath:
                 rc = new JiangConrath(db);
                 break;
 
-            case lin:
+            case Lin:
                 rc = new Lin(db);
                 break;
 
-            case path:
+            case Path:
                 rc = new Path(db);
                 break;
         }

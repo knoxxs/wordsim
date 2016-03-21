@@ -1,3 +1,4 @@
+package com.wordsim;
 
 import edu.cmu.lti.ws4j.Relatedness;
 
