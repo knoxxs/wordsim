@@ -12,7 +12,7 @@ import edu.cmu.lti.ws4j.Relatedness;
  *
  * @author aapa
  */
-public class AbstractWordSimilarity implements WordSimilarity {
+public abstract class AbstractWordSimilarity implements WordSimilarity {
     @Override
     public Double getWordSimilarity(String word1, String word2, SimilarityMeasure measure) {
         throw new UnsupportedOperationException("");
@@ -22,6 +22,21 @@ public class AbstractWordSimilarity implements WordSimilarity {
     public Double getWordSimilarity(String word1, String word2, String sentence1, String sentence2,
                                     SimilarityMeasure measure) {
         throw new UnsupportedOperationException("");
+    }
+
+    @Override
+    public Double getWordSimilarity(String word1, int word1sense, String word2, int word2sense, String pos, SimilarityMeasure measure) {
+        return null;
+    }
+
+    @Override
+    public Double getWordSimilarity(String word1, String word2, int word2sense, String pos, SimilarityMeasure measure) {
+        return null;
+    }
+
+    @Override
+    public Double getWordSimilarity(String word1, String word2, String pos, SimilarityMeasure measure) {
+        return null;
     }
 
     @Override

@@ -20,6 +20,21 @@ public class WS4JWordSimilarity extends AbstractWordSimilarity {
         return getMeasure(measure).calcRelatednessOfWords(word1, word2);
     }
 
+    @Override
+    public Double getWordSimilarity(String word1, int word1sense, String word2, int word2sense, String pos, SimilarityMeasure measure) {
+        return null;
+    }
+
+    @Override
+    public Double getWordSimilarity(String word1, String word2, int word2sense, String pos, SimilarityMeasure measure) {
+        return null;
+    }
+
+    @Override
+    public Double getWordSimilarity(String word1, String word2, String pos, SimilarityMeasure measure) {
+        return null;
+    }
+
     private RelatednessCalculator getMeasure(SimilarityMeasure measure) {
         RelatednessCalculator rc = null;
         switch (measure) {
