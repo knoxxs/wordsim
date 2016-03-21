@@ -10,7 +10,13 @@ import edu.sussex.nlp.jws.JiangAndConrath;
  *
  * @author kumar
  */
+
+
+/***
+ * http://wn-similarity.sourceforge.net/
+ */
 public class DemoJWS {
+
 
     public static void main(String args[]) {
         String wordnetpath = "C:/Users/kumar/git/wordsim/WordNet";
