@@ -25,7 +25,8 @@ public abstract class AbstractWordSimilarity implements WordSimilarity {
     }
 
     @Override
-    public Double getWordSimilarity(String word1, int word1sense, String word2, int word2sense, String pos, SimilarityMeasure measure) {
+    public Double getWordSimilarity(String word1, int word1sense, String word2, int word2sense, String pos,
+                                    SimilarityMeasure measure) {
         return null;
     }
 

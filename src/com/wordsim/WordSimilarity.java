@@ -12,13 +12,13 @@ public interface WordSimilarity {
      * @param measure
      * @return
      */
-
-
     Double getWordSimilarity(String word1, String word2, SimilarityMeasure measure);
 
     Double getWordSimilarity(String word1, String word2, String sentence1, String sentence2,
                              SimilarityMeasure measure);
-    Double getWordSimilarity(String word1, int word1sense, String word2, int word2sense, String pos, SimilarityMeasure measure);
+
+    Double getWordSimilarity(String word1, int word1sense, String word2, int word2sense, String pos,
+                             SimilarityMeasure measure);
 
     Double getWordSimilarity(String word1, String word2, int word2sense, String pos, SimilarityMeasure measure);
 

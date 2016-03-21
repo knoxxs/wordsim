@@ -4,11 +4,16 @@ import edu.sussex.nlp.jws.JWS;
 import edu.sussex.nlp.jws.JiangAndConrath;
 
 /**
- * Created by kumar on 21-03-2016.
+ * Copyright (C) 2016 Scupids - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ *
+ * @author kumar
  */
 public class DemoJWS {
 
     public static void main(String args[]) {
+        new WS4JWordSimilarity();
         String wordnetpath = "C:/Program Files (x86)/WordNet";
         JWS jws = new JWS(wordnetpath, "2.1");
         JiangAndConrath var3 = jws.getJiangAndConrath();
