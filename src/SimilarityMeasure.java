@@ -3,7 +3,7 @@
  * <p>
  * https://www.eecis.udel.edu/~trnka/CISC889-11S/lectures/greenbacker-WordNet-Similarity.pdf
  */
-public enum SimilarityMeasureMetrics {
+public enum SimilarityMeasure {
 
     /**
      * based on the shortest path that connects the senses (as above) and the maximum depth of the taxonomy in which
@@ -18,7 +18,7 @@ public enum SimilarityMeasureMetrics {
 
     private String short_form;
 
-    SimilarityMeasureMetrics(String short_form) {
+    SimilarityMeasure(String short_form) {
         this.short_form = short_form;
     }
 

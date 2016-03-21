@@ -1,3 +1,5 @@
+package impl;
+
 import edu.cmu.lti.ws4j.Relatedness;
 
 /**
