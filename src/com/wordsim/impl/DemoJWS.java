@@ -13,8 +13,7 @@ import edu.sussex.nlp.jws.JiangAndConrath;
 public class DemoJWS {
 
     public static void main(String args[]) {
-        new WS4JWordSimilarity();
-        String wordnetpath = "C:/Program Files (x86)/WordNet";
+        String wordnetpath = "C:/Users/kumar/git/wordsim/WordNet";
         JWS jws = new JWS(wordnetpath, "2.1");
         JiangAndConrath var3 = jws.getJiangAndConrath();
         System.out.println("Jiang & Conrath\n");

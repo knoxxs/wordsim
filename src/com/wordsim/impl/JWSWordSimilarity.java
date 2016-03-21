@@ -2,6 +2,7 @@ package com.wordsim.impl;
 
 import com.wordsim.SimilarityMeasure;
 import edu.sussex.nlp.jws.JWS;
+import edu.sussex.nlp.jws.JiangAndConrath;
 
 import java.util.Iterator;
 import java.util.Map;
@@ -9,7 +10,11 @@ import java.util.Set;
 import java.util.TreeMap;
 
 /**
- * Created by kumar on 21-03-2016.
+ * Copyright (C) 2016 Scupids - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ *
+ * @author kumar
  */
 public class JWSWordSimilarity extends AbstractWordSimilarity {
 
@@ -58,7 +63,7 @@ public class JWSWordSimilarity extends AbstractWordSimilarity {
      */
     @Override
     public Double getWordSimilarity(String word1, String word2, int word2sense, String pos, SimilarityMeasure measure) {
-
+        //JiangAndConrath var3 = jws.getJiangAndConrath();
         Double score = 0.0;
         String wordsense = null;
         TreeMap tm = new TreeMap();
@@ -82,8 +87,9 @@ public class JWSWordSimilarity extends AbstractWordSimilarity {
     }
 
 
-    // TODO: 21-03-2016  jws may not be initialised,  throw exception?
-    // JiangAndConrath var3 = jws.getJiangAndConrath();
+
+//     JiangAndConrath var3 = jws.getJiangAndConrath();
+
     //System.out.println("Jiang & Conrath\n");
 
 
