@@ -87,8 +87,47 @@ public class JWSWordSimilarity extends AbstractWordSimilarity {
     }
 
     @Override
-    public Double getWordSimilarity(String word1, String word2, SimilarityMeasure measure) {
-        return super.getWordSimilarity(word1, word2, measure);
+    public Double getWordSimilarity(String word1, String word2, String pos, SimilarityMeasure measure) {
+        Double score = 0.0;
+
+        switch (measure) {
+            case HirstStOnge:
+                score = hso.max(word1, word2, pos);
+                break;
+
+            case Leacock_Chodorow:
+                score = lch.max(word1, word2, pos);
+                break;
+
+            case Lesk:
+                score = adpleskwithhypo.max(word1, word2, pos);
+                break;
+
+            case Resnik:
+                score = res.max(word1, word2, pos);
+                break;
+
+            case Wu_Palmer:
+                score = wup.max(word1, word2, pos);
+                break;
+
+            case Jiang_Conrath:
+                score = jcn.max(word1, word2, pos);
+                break;
+
+            case Lin:
+                score = lin.max(word1, word2, pos);
+                break;
+
+            case Path:
+                score = path.max(word1, word2, pos);
+                break;
+            default:
+                score = adpleskwithouthypo.max(word1, word2, pos);
+                break;
+        }
+
+        return score;
     }
 
 
