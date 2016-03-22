@@ -1,8 +1,7 @@
 package com.wordsim.impl;
 
 import com.wordsim.SimilarityMeasure;
-import edu.sussex.nlp.jws.JWS;
-import edu.sussex.nlp.jws.JiangAndConrath;
+import edu.sussex.nlp.jws.*;
 
 import java.util.Iterator;
 import java.util.Map;
@@ -18,16 +17,23 @@ import java.util.TreeMap;
  */
 public class JWSWordSimilarity extends AbstractWordSimilarity {
 
-    private final String wordnetpath = "C:/Program Files (x86)/WordNet";
-    private final JWS jws;
+    private final static String wordnetpath = "C:/Users/kumar/git/wordsim/WordNet";
+    private static JWS jws = new JWS(wordnetpath, "2.1");
 
-    public JWSWordSimilarity() {
-        jws = new JWS(wordnetpath, "2.1");
-    }
 
+    JiangAndConrath jcn = jws.getJiangAndConrath();
+    AdaptedLesk adplesk = jws.getAdaptedLesk();
+    AdaptedLeskTanimoto adpleskwithhypo = jws.getAdaptedLeskTanimoto();
+    AdaptedLeskTanimotoNoHyponyms adpleskwithouthypo = jws.getAdaptedLeskTanimotoNoHyponyms();
+    HirstAndStOnge hso = jws.getHirstAndStOnge();
+    LeacockAndChodorow lch = jws.getLeacockAndChodorow();
+    Lin lin = jws.getLin();
+    Resnik res = jws.getResnik();
+    WuAndPalmer wup = jws.getWuAndPalmer();
+    Path path = jws.getPath();
 
     /***
-     * similarity measure ka object banao and sahi metrics se initialize karo. fir  return object.objectname(functionname(1))
+     * lize karo. fir  return object.objectname(functionname(1))
      *
      * @param word1
      * @param word1sense
@@ -39,10 +45,45 @@ public class JWSWordSimilarity extends AbstractWordSimilarity {
      */
     @Override
     public Double getWordSimilarity(String word1, int word1sense, String word2, int word2sense, String pos, SimilarityMeasure measure) {
+        Double score = 0.0;
+        switch (measure) {
+            case HirstStOnge:
+                score = hso.hso(word1, word1sense, word2, word2sense, pos);
+                break;
 
-        //measure
+            case Leacock_Chodorow:
+                score = lch.lch(word1, word1sense, word2, word2sense, pos);
+                break;
 
-        return super.getWordSimilarity(word1, word1sense, word2, word2sense, pos, measure);
+            case Lesk:
+                score = adpleskwithhypo.lesk(word1, word1sense, word2, word2sense, pos);
+                break;
+
+            case Resnik:
+                score = res.res(word1, word1sense, word2, word2sense, pos);
+                break;
+
+            case Wu_Palmer:
+                score = wup.wup(word1, word1sense, word2, word2sense, pos);
+                break;
+
+            case Jiang_Conrath:
+                score = jcn.jcn(word1, word1sense, word2, word2sense, pos);
+                break;
+
+            case Lin:
+                score = lin.lin(word1, word1sense, word2, word2sense, pos);
+                break;
+
+            case Path:
+                score = path.path(word1, word1sense, word2, word2sense, pos);
+                break;
+            default:
+                score = adpleskwithouthypo.lesk(word1, word1sense, word2, word2sense, pos);
+                break;
+        }
+
+        return score;
     }
 
     @Override
@@ -52,8 +93,6 @@ public class JWSWordSimilarity extends AbstractWordSimilarity {
 
 
     /***
-     * same lekin treemap return hoga.     abb tree map ka dekho
-     *
      * @param word1
      * @param word2
      * @param word2sense
@@ -65,9 +104,54 @@ public class JWSWordSimilarity extends AbstractWordSimilarity {
     public Double getWordSimilarity(String word1, String word2, int word2sense, String pos, SimilarityMeasure measure) {
         //JiangAndConrath var3 = jws.getJiangAndConrath();
         Double score = 0.0;
-        String wordsense = null;
         TreeMap tm = new TreeMap();
 
+
+        switch (measure) {
+            case HirstStOnge:
+                tm = hso.hso(word1, word2, word2sense, pos);
+                break;
+
+            case Leacock_Chodorow:
+                tm = lch.lch(word1, word2, word2sense, pos);
+                break;
+
+            case Lesk:
+                tm = adpleskwithhypo.lesk(word1, word2, word2sense, pos);
+                break;
+
+            case Resnik:
+                tm = res.res(word1, word2, word2sense, pos);
+                break;
+
+            case Wu_Palmer:
+                tm = wup.wup(word1, word2, word2sense, pos);
+                break;
+
+            case Jiang_Conrath:
+                tm = jcn.jcn(word1, word2, word2sense, pos);
+                break;
+
+            case Lin:
+                tm = lin.lin(word1, word2, word2sense, pos);
+                break;
+
+            case Path:
+                tm = path.path(word1, word2, word2sense, pos);
+                break;
+            default:
+                tm = adpleskwithouthypo.lesk(word1, word2, word2sense, pos);
+                break;
+        }
+        String wordsense = MaxScoreSense(tm);
+        score = (Double) tm.get(wordsense);
+        System.out.println(wordsense);
+        return score;
+    }
+
+    public String MaxScoreSense(TreeMap tm) {
+        Double score = 0.0;
+        String wordsense = null;
         Set set = tm.entrySet();
         Iterator i = set.iterator();
         while (i.hasNext()) {
@@ -77,65 +161,10 @@ public class JWSWordSimilarity extends AbstractWordSimilarity {
                 score = tempscore;
                 wordsense = (String) me.getKey();
             }
-
-
         }
 
-        System.out.println(wordsense);
-
-        return score;
+        return wordsense;
     }
 
-
-
-//     JiangAndConrath var3 = jws.getJiangAndConrath();
-
-    //System.out.println("Jiang & Conrath\n");
-
-
-    // TreeMap var4 = var3.jcn("apple", "banana", "n");
-    //Iterator var5 = var4.keySet().iterator();
-
-
-/*
-
-    private RelatednessCalculator getMeasure(SimilarityMeasure measure) {
-        RelatednessCalculator rc = null;
-        switch (measure) {
-            case HirstStOnge:
-                rc = new HirstStOnge(db);
-                break;
-
-            case Leacock_Chodorow:
-                rc = new LeacockChodorow(db);
-                break;
-
-            case Lesk:
-                rc = new Lesk(db);
-                break;
-
-            case Resnik:
-                rc = new Resnik(db);
-                break;
-
-            case Wu_Palmer:
-                rc = new WuPalmer(db);
-                break;
-
-            case Jiang_Conrath:
-                rc = new JiangConrath(db);
-                break;
-
-            case Lin:
-                rc = new Lin(db);
-                break;
-
-            case Path:
-                rc = new Path(db);
-                break;
-        }
-        return rc;
-    }
-*/
 
 }
